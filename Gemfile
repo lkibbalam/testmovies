@@ -24,6 +24,7 @@ gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem "devise"
+gem "rexml"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -33,7 +34,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
-  gem "factory_bot"
+  gem "factory_bot_rails"
   gem "pry"
   gem "rspec"
   gem "rspec-rails"
@@ -55,6 +56,7 @@ group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
   # Easy installation and use of web drivers to run system tests with browsers
+  gem "shoulda-matchers", "~> 4.0"
   gem "webdrivers"
 end
 
