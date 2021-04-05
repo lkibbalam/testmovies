@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable :recoverable, :rememberable, :validatable
   devise :database_authenticatable, :registerable
+
+  def age
+    now = Date.current
+    age = now.year - birthdate.year
+    age -= 1 if now.yday < birthdate.yday
+  end
 end
