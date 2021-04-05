@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable
 
   validates :birthdate, presence: true
-  validates_inclusion_of :birthdate, in: Date.new(1900)..Date.current
+  validates_inclusion_of :birthdate, in: Date.new(1850)..Date.current
 
   def age
     now = Date.current
