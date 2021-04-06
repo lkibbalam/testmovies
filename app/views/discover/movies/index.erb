@@ -1,0 +1,21 @@
+<div class="discover-movies-page" >
+  <h1 class="discover-movies-page__title">Movies Page:<%= @result['page'] %>
+    <br>
+    <% if @result['page'] > 1 %>
+      <%= link_to("previous", discover_movies_path(page: @result["page"] - 1)) %>
+    <% end %>
+    <% if @result["total_pages"] > @result['page'] %>
+      <%= link_to("next", discover_movies_path(page: @result["page"] + 1)) %>
+    <% end %>
+  </h1>
+  <div class="discover-movies-page__content">
+    <% @result["results"].each do |movie| %>
+      <div class="discover-movies-page__movie-item">
+        <div class="discover-movies-page__movie-item-title"><%= movie['original_title'] %></div>
+        <img class="discover-movies-page__image-poster" 
+             src="https://image.tmdb.org/t/p/w500/<%= movie['poster_path'] %>" 
+        >
+      </div>
+    <% end %>
+  </div>
+</div>

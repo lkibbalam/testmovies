@@ -1,0 +1,22 @@
+.discover-movies-page__content {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+}
+.discover-movies-page__movie-item {
+  width: calc(25% - 40px);
+  padding: 20px;
+}
+
+.discover-movies-page__image-poster {
+  width: 100%;
+}
+
+.discover-movies-page__title {
+  text-align: center;
+}
+
+.discover-movies-page__movie-item-title {
+  height: 60px;
+  font-size: 18px;
+}
