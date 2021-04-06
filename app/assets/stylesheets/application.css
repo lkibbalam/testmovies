@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ .flash-error {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+ }

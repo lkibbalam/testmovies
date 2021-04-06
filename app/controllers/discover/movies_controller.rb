@@ -4,6 +4,10 @@ module Discover
   class MoviesController < ApplicationController
     def index
       @result = Mdb::Client.new.discover_movie(page: discover_movies_params["page"])
+      if @result["errors"]&.any?
+        flash[:alert] = @result["errors"]
+        redirect_to discover_movies_path
+      end
     end
 
     private
