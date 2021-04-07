@@ -8,10 +8,10 @@ module Discover
       @result = policy_scope(DiscoverMovies.new(page: discover_movies_params[:page]),
                              policy_scope_class: ::Discover::MoviesPolicy::Scope)
                 .call
-      if @result["errors"]&.any? || @result["status_message"]
-        flash[:alert] = @result["errors"] || @result["status_message"]
-        redirect_to discover_movies_path
-      end
+      return if @result.errors.none?
+
+      flash[:alert] = @result.errors.join
+      redirect_to discover_movies_path
     end
 
     private

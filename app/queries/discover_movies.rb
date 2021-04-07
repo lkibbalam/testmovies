@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class DiscoverMovies
+  Result = Struct.new(:data, :meta, :errors)
+
   def initialize(options = {})
     @client = Mdb::Client.new
     @options = options.symbolize_keys
   end
 
   def call
-    client.discover_movie(query)
+    Result.new(result_data, result_meta, result_errors)
   end
 
   def where(options)
@@ -51,5 +53,31 @@ class DiscoverMovies
 
   def page
     options[:page] || 1
+  end
+
+  def response
+    @response ||= client.discover_movie(query)
+  end
+
+  def result_errors
+    Array.wrap(response["errors"] || response["status_message"])
+  end
+
+  def request_successful?
+    request_errors.empty?
+  end
+
+  def result_data
+    response["results"]
+  end
+
+  def result_meta
+    { page: response["page"], total_pages: response["total_pages"] }
+  end
+
+  def errors
+    return [] if request_successful?
+
+    Array.wrap(response["errors"] || response["status_message"])
   end
 end
