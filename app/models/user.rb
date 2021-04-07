@@ -9,6 +9,6 @@ class User < ApplicationRecord
   def age
     now = Date.current
     age = now.year - birthdate.year
-    age - (now.yday < birthdate.yday ? -1 : 0)
+    age - (now.yday < birthdate.yday ? 1 : 0)
   end
 end

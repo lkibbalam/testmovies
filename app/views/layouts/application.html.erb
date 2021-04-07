@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= link_to("Sign out", destroy_user_session_path, method: :delete, class: "sign-out") %>
+    <% end %>
     <% flash.each do |type, msg| %>
       <div class="flash-error">
         <%= msg %>

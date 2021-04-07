@@ -1,5 +1,5 @@
 <div class="discover-movies-page" >
-  <h1 class="discover-movies-page__title">Movies Page:<%= @result['page'] %>
+  <h1 class="discover-movies-page__title">Movies Page:<%= @result['page'] %> -- current user age: <%= current_user.age %>
     <br>
     <% if @result['page'] > 1 %>
       <%= link_to("previous", discover_movies_path(page: @result["page"] - 1)) %>

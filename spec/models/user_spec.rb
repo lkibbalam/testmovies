@@ -25,8 +25,8 @@ RSpec.describe User, type: :model do
 
     context "when the birthday yday is 1 day ahead current yday" do
       let(:user) { create(:user, birthdate: Date.ordinal(Date.current.year - 18, Date.current.yday + 1)) }
-      it "user age should be 19" do
-        expect(user.age).to eq(19)
+      it "user age should be 17" do
+        expect(user.age).to eq(17)
       end
     end
   end

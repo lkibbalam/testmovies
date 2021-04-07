@@ -19,3 +19,11 @@
     font-size: 20px;
     color: red;
  }
+
+ .sign-out {
+   position: absolute;
+   right: 20px;
+   padding: 10px 20px;
+   background-color: antiquewhite;
+   text-decoration: none;
+ }

@@ -32,7 +32,7 @@ class DiscoverMovies
   end
 
   def certification
-    options[:certification_lte] || "G"
+    options[:certification] || "G"
   end
 
   def certification_country
