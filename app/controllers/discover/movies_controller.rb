@@ -2,10 +2,14 @@
 
 module Discover
   class MoviesController < ApplicationController
+    before_action :authenticate_user!
+    
     def index
-      @result = Mdb::Client.new.discover_movie(page: discover_movies_params["page"])
+      @result = policy_scope(DiscoverMovies.new(page: discover_movies_params[:page]),
+                             policy_scope_class: ::Discover::MoviesPolicy::Scope).call
+      # binding.pry
       if @result["errors"]&.any?
-        flash[:alert] = @result["errors"]
+        flash[:alert] = @result["errors"] || @result["status_message"]
         redirect_to discover_movies_path
       end
     end
