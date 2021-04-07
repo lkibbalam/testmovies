@@ -7,11 +7,7 @@ class DiscoverMovies
   end
 
   def call
-    client.discover_movie(page: page,
-                          certification: certification,
-                          certification_country: certification_country,
-                          "primary_release_date.gte": primary_release_date_gte,
-                          include_adult: include_adult)
+    client.discover_movie(query)
   end
 
   def where(options)
@@ -22,6 +18,16 @@ class DiscoverMovies
   private
 
   attr_reader :client, :options
+
+  def query
+    {
+      page: page,
+      certification: certification,
+      certification_country: certification_country,
+      "primary_release_date.gte": primary_release_date_gte,
+      include_adult: include_adult
+    }
+  end
 
   def primary_release_date_gte
     options[:primary_release_date_lte] || 3.years.ago.to_date.strftime("%Y-%d-%m")

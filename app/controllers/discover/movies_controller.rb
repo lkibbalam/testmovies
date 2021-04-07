@@ -6,8 +6,9 @@ module Discover
 
     def index
       @result = policy_scope(DiscoverMovies.new(page: discover_movies_params[:page]),
-                             policy_scope_class: ::Discover::MoviesPolicy::Scope).call
-      if @result["errors"]&.any?
+                             policy_scope_class: ::Discover::MoviesPolicy::Scope)
+                .call
+      if @result["errors"]&.any? || @result["status_message"]
         flash[:alert] = @result["errors"] || @result["status_message"]
         redirect_to discover_movies_path
       end
