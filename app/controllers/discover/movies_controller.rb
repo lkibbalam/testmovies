@@ -5,8 +5,7 @@ module Discover
     before_action :authenticate_user!
 
     def index
-      @result = policy_scope(DiscoverMovies.new(page: discover_movies_params[:page]),
-                             policy_scope_class: ::Discover::MoviesPolicy::Scope)
+      @result = policy_scope(Discover::MoviesQuery.new(page: discover_movies_params[:page]))
                 .call
       return if @result.errors.none?
 

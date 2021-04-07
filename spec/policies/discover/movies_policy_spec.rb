@@ -3,10 +3,8 @@
 require "rails_helper"
 require "pundit/rspec"
 
-RSpec.describe ::Discover::MoviesPolicy, type: :policy do
-  let(:scope) do
-    ::Discover::MoviesPolicy::Scope.new(user, DiscoverMovies.new).resolve
-  end
+RSpec.describe ::Discover::MoviesQueryPolicy, type: :policy do
+  let(:scope) { Pundit.policy_scope!(user, Discover::MoviesQuery.new) }
 
   describe "Scope" do
     context "fife years old user" do

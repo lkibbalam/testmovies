@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Discover
-  class MoviesPolicy < ApplicationPolicy
+  class MoviesQueryPolicy < ApplicationPolicy
     class Scope
       def initialize(user, scope)
         @user  = user
